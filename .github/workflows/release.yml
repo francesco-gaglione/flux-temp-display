@@ -1,0 +1,24 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build release binary
+        run: cargo build --release --locked --target x86_64-unknown-linux-gnu
+      - name: Package binary
+        run: tar -czf flux-temp-display-x86_64-unknown-linux-gnu.tar.gz -C target/x86_64-unknown-linux-gnu/release flux_temp_display
+      - name: Publish GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" flux-temp-display-x86_64-unknown-linux-gnu.tar.gz --generate-notes

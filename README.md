@@ -35,6 +35,25 @@ cargo build --release --locked
 
 The process stays in the foreground; press `Ctrl+C` to stop it. Sensor read failures are written to stderr and the corresponding display value is shown as unavailable. If the display is not found, check USB permissions below.
 
+## Install from a release
+
+On supported x86_64 Linux systems with systemd, run the installer as your normal user (not with `sudo`):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/francesco-gaglione/flux-temp-display/main/scripts/install.sh | bash
+```
+
+It downloads the latest GitHub release, installs the binary under `~/.local/bin`, installs and starts the per-user systemd service, and configures USB permissions. It uses `sudo` to create the `antec-display` group and install the udev rule. Log out and back in, then reconnect the display, if group membership changes.
+
+Releases are built and published by GitHub Actions when a version tag is pushed. To publish one, for example:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The workflow currently builds the x86_64 Linux binary. The installer can be run again to update to the latest release.
+
 ## USB permissions
 
 Confirm that Linux detects the display:
