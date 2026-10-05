@@ -88,5 +88,3 @@ cargo clippy --all-targets --locked -- -D warnings
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE).
-# flux-temp-display
-# flux-temp-display
