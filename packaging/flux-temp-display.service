@@ -1,0 +1,13 @@
+[Unit]
+Description=Antec Flux Pro temperature display
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/flux_temp_display
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

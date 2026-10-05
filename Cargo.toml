@@ -1,0 +1,15 @@
+[package]
+name = "flux_temp_display"
+version = "0.1.0"
+edition = "2024"
+description = "Linux service for displaying CPU and GPU temperatures on the Antec Flux Pro USB display"
+license = "MIT"
+readme = "README.md"
+keywords = ["linux", "temperature", "antec", "usb"]
+categories = ["hardware-support"]
+
+[dependencies]
+async-trait = "0.1.92"
+rusb = "0.9.4"
+thiserror = "2.0.21"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "signal", "time"] }
